@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>socket</title>
+    <style media="screen">
+      .container{
+        padding: 15px;
+        height: 350px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>socket</h3>
+    <div class="container">
+      <div class="right message">
+
+      </div>
+      <div class="left message">
+        <img src="" alt="">
+        <div class="msg-content">
+        </div>
+      </div>
+    </div>
+    <button type="button" id="btn" name="button">提问</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io.connect('http://localhost:8080');
+      document.querySelector('#btn').onclick = function(){
+        socket.emit('q', '发送消息');
+      }
+      socket.on('a', function(data){
+        alert('服务器说他' + data)
+      });
+    </script>
+  </body>
+</html>

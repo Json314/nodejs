@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>我的相册</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/index.css">
+  </head>
+  <body>
+    <div class="container">
+      <br>
+      <h3 class="text-center">我的相册</h3>
+      <br>
+      <ol class="breadcrumb">
+        <li><a href="/">首页</a></li>
+        <li class="active"><%= name %></li>
+      </ol>
+      <div class="album-list row">
+        <% for(var i=0;i<list.length;i++){ %>
+          <div class="col-sm-3">
+            <a class="item" href="/albums/<%= name %>/<%= list[i] %>">
+              <img class="dir" src="/albums/<%= name %>/<%= list[i] %>" alt="">
+              <p class="text-center"><%= list[i] %></p>
+            </a>
+          </div>
+        <% } %>
+        <div class="col-sm-3">
+          <button type="button" class="btn btn-primary" id="add-picture">添加照片</button>
+        </div>
+      </div>
+      <form action="/upload" method="post" enctype="multipart/form-data" style="position: absolute;z-index: -100;display:none;">
+        <input type="file" name="picture" value="">
+        <input type="text" name="dir" value="<%= name %>">
+      </form>
+    </div>
+    <script src="/jquery-3.2.1.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $('#add-picture').on('click', function(){
+        $('form input[type="file"]')[0].click();
+      });
+      $('form input[type="file"]').on('change', function(){
+        $('form')[0].submit();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+local.*
+mongod.lock
+storage.bson
+test.ns
+/journal
+/*/node_modules
